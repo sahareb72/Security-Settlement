@@ -1,1 +1,125 @@
-aa
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.5.0 <0.9.0;
+
+contract CrossBorderPayment {
+address payable public owner;
+// Mapping to store user balances
+mapping(address => uint256) public balances;
+
+// Struct to store KYC details
+struct KYCDetails {
+    bytes32 hash;
+    bool isVerified;
+}
+
+// Mapping to store KYC details
+mapping(address => KYCDetails) public kycDetails;
+
+event Deposit(address indexed _from, uint256 _value);
+event PaymentSent(address indexed sender, address indexed recipient, uint amount, string currency);
+event KYCVerified(address indexed user);
+event RiskProfile(address indexed participantAddress, uint256 riskScore);
+
+constructor() {
+    owner = payable(msg.sender);  // Fixed constructor assignment to properly set the owner
+}
+
+// Modifier to require KYC verification
+modifier isKYCVerified(address _user) {
+    require(kycDetails[_user].isVerified, "User is not KYC verified");
+    _;
+}
+
+// Function for the owner to verify a user's KYC
+function verifyKYC(address _user, string memory _name, string memory _idNumber, string memory _dateOfBirth) public {
+    require(msg.sender == owner, "Only the owner can verify KYC");
+    bytes32 kycHash = keccak256(abi.encodePacked(_name, _idNumber, _dateOfBirth));
+    kycDetails[_user] = KYCDetails({
+        hash: kycHash,
+        isVerified: true
+    });
+    emit KYCVerified(_user);
+}
+
+// Function to deposit money into the contract
+function deposit() public payable {
+    require(msg.value > 0, "Deposit amount must be greater than zero.");
+    balances[msg.sender] += msg.value;
+    emit Deposit(msg.sender, msg.value);
+}
+
+// Function to send specified token to recipient, requires KYC verification
+function sendPayment(address payable _recipient, uint _amount, string memory currency) public payable isKYCVerified(msg.sender) {
+    require(msg.value > 0 && msg.value >= _amount, "Amount sent must be greater than 0 and enough to cover the payment");
+    require(address(this).balance >= _amount, "Insufficient balance in the contract");
+    require(_recipient != address(0), "Invalid recipient address");
+
+    _recipient.transfer(_amount);
+    emit PaymentSent(msg.sender, _recipient, _amount, currency);
+}
+
+// Function to handle cross-border payments, requires KYC verification
+function processPayment(address payable receiver, uint amount, string memory currency) public isKYCVerified(msg.sender) {
+    require(address(this).balance >= amount, "Insufficient funds");
+    receiver.transfer(amount);
+    emit PaymentSent(msg.sender, receiver, amount, currency);
+}
+
+// Withdraw function accessible only to the owner
+function withdraw(uint amount) public {
+    require(msg.sender == owner, "Only the owner can withdraw.");
+    require(address(this).balance >= amount, "Insufficient balance in the contract");
+    owner.transfer(amount);
+}
+
+// Struct to store participant details for risk profiling
+struct Participant {
+    address participantAddress;
+    uint256 totalTransactions;
+    bool isPoliticallyExposed;
+    bool isHighNetWorth;
+    uint256 riskScore;
+}
+
+event RiskProfileEmitted(
+    address indexed participantAddress,
+    uint256 totalTransactions,
+    bool isPoliticallyExposed,
+    bool isHighNetWorth,
+    uint256 riskScore
+);
+
+mapping(address => Participant) public participants;
+
+// Function to profile the risk of a participant
+function profileRisk(address participantAddress, uint256 totalTransactions, bool isPoliticallyExposed, bool isHighNetWorth) public isKYCVerified(msg.sender) {
+    uint256 riskScore = 0;
+
+    if (totalTransactions > 100) {
+        riskScore += 20; // High transaction volume increases risk
+    }
+
+    if (isPoliticallyExposed) {
+        riskScore += 30; // Politically exposed persons are higher risk
+    }
+
+    if (isHighNetWorth) {
+        riskScore += 10; // High-net-worth individuals may have higher risk exposure
+    }
+
+    participants[participantAddress] = Participant(
+        participantAddress,
+        totalTransactions,
+        isPoliticallyExposed,
+        isHighNetWorth,
+        riskScore
+    );
+
+    emit RiskProfileEmitted(
+        participantAddress,
+        totalTransactions,
+        isPoliticallyExposed,
+        isHighNetWorth,
+        riskScore
+    );
+}
