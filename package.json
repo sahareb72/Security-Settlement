@@ -1,0 +1,43 @@
+{
+  "name": "hardhat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "build": "react-scripts build",
+    "dev": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.6",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.22.2",
+    "hardhat-deploy": "^0.12.2",
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.2.1",
+    "@chainlink/contracts-ccip": "1.4.0",
+    "@craco/craco": "^7.1.0",
+    "@nomicfoundation/hardhat-ignition": "^0.15.1",
+    "@openzeppelin/contracts": "^5.0.2",
+    "cors": "^2.8.5",
+    "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.2",
+    "save": "^2.9.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
+}

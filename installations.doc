@@ -1,0 +1,198 @@
+
+
+
+dtreku
+04/04/2024(Start of HardHat Project)
+
+
+npm install --save-dev hardhat
+npm install --save-dev hardhat hardhat-deploy ethers @openzeppelin/contracts
+
+npx hardhat init
+npm install --save-dev "@nomicfoundation/hardhat-toolbox@^5.0.0"
+npx hardhat compile
+npx hardhat test
+npx hardhat ignition deploy ./ignition/modules/Lock.js
+npx hardhat node
+
+
+
+
+
+
+/2024
+
+Recall from last class (04/04/2024)*
+npx hardhat compile
+npx hardhat node
+npx hardhat test
+npx hardhat ignition deploy ./ignition/modules/SimpleContract.js --network localhost
+
+
+
+
+
+
+
+npm install --save-dev nodemon
+
+//for interacting app.js with mongo.js
+npm install express
+
+
+npm install ethers
+npm install ethers@6.11.1
+
+
+//for dealing with browser frontend security issues
+npm install helmet
+
+npm install dotenv
+
+
+//For .env  file
+
+SEPOLIA_API_URL=https://sepolia.infura.io/v3/cc665cf0838e4cad9cc98b22d22ae92f
+PRIVATE_KEY=
+CONTRACT_ADDRESS= 
+•	
+•	
+
+For getting the api to the URL and sepolia ethers
+https://www.infura.io/
+
+
+
+npx hardhat compile
+
+npx hardhat ignition deploy ./ignition/modules/SimpleContract.js --network sepolia
+
+
+
+
+
+rm -rf node_modules package-lock.json
+npm install
+
+
+
+
+
+
+
+
+
+
+
+//Run these lines in your terminal
+npm install @openzeppelin/contracts
+npm install @chainlink/contracts
+
+npm install -g npm-check-updates
+
+npm install @nomicfoundation/hardhat-ignition@latest
+npm install --save-dev "@nomicfoundation/hardhat-verify@^2.0.1"
+npm install --save-dev @nomiclabs/hardhat-ethers ethers
+
+
+
+
+
+
+
+
+
+
+
+
+npm install -g yarn
+yarn install
+
+
+
+
+
+
+  namedAccounts: {
+    deployer: {
+      default: 0, // Here the 0th account will always be the deployer
+    },
+  },
+};
+
+
+
+npm install --save-dev hardhat-deploy
+
+
+//npx hardhat deploy --network localhost
+
+npx hardhat deploy --network sepolia
+
+
+
+//Make sure the following are install before running npm start to start the mongodb server
+
+npm install helmet
+npm install express
+
+
+//in the .env add the following 
+
+MONGODB_URI=mongodb://localhost:27017 
+MONGODB_DB_NAME=SecuritiesDatabase
+
+node mongo.js //(server.js or backend.js)
+node app.js  //(express)
+node App.js  //(react  or frontend.js)
+
+
+
+
+
+MongoDB setup on Mac
+https://www.youtube.com/watch?v=8gUQL2zlpvI
+
+
+
+
+
+https://sindri.app/
+Beta Signup: https://sindri.app/signup
+
+Docs:
+https://sindri.app/docs/introduction/
+
+Blog: https://sindri.app/blog/
+
+REMIX IDE docs:
+https://sindri.app/blog/2024/03/13/remix-sindri/
+https://sindri.app/docs/how-to-guides/development-tooling/remix
+
+
+
+const snarkjs = require('snarkjs');
+
+const calldata = await snarkjs.groth16.exportSolidityCall
+
+
+
+
+
+
+4/28/2024
+
+"@babel/plugin-proposal-private-property-in-object":"7.21.11",
+"@babel/plugin-transform-private-property-in-object":"7.24.1",
+
+
+
+05/31/2024
+npm install @craco/craco
+npm install crypto-browserify
+yarn add crypto-browserify
+npm install process vm-browserify util url assert stream-browserify
+npm install webpack webpack-cli crypto-browserify stream-browserify buffer
+npm install process browserify crypto-browserify stream-browserify vm-browserify util url assert buffer
+
+
