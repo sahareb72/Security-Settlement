@@ -1,4 +1,4 @@
-# Introduction
+# Introduction \hyperlink{https://sahareb72.notion.site/f0e8751bd27a4d2fbbe132a5259bc167?v=a78354931def4d978bf77d39320b0a36&pvs=4}
 
 Decentralization is the bedrock of blockchain technology, fundamentally transforming the distribution of power and control across network participants. This shift from centralized systems, where control is consolidated, to a distributed architecture, enhances transparency and security by preventing any single party from unilaterally altering information on the blockchain. It enables a democratic system of governance, where all participants contribute to transaction validation, fostering trust and cooperation without the need for a central authority. This not only diminishes the risk of corruption and manipulation but also fortifies the network by spreading the computational load across various nodes. The democratization of control is crucial for applications in financial services, supply chain management, and voting systems, where integrity and equity are paramount (Nakamoto, 2008; Buterin, 2015).
 
